@@ -7,7 +7,7 @@ public class TestState : BaseState<InteractableObject>
     {
     }
 
-    public override void Interract()
+    public override void Interract(ICharacter character)
     {
         Debug.Log("interact with " + context.gameObject.name);
     }

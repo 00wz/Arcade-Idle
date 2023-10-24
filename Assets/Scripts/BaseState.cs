@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class BaseState<ContextType>
+public abstract class BaseState<ContextType>:IState
 {
     protected ContextType context;
     private Action<Type> _changeState;
@@ -20,7 +20,7 @@ public abstract class BaseState<ContextType>
     {
     }
 
-    public virtual void Interract()
+    public virtual void Interract(ICharacter character)
     {
     }
 

@@ -6,6 +6,9 @@ public class GameRootInstance : MonoBehaviour
 {
     [SerializeField]
     public NavMashUpdater NavMashUpdater;
+
+    [SerializeField]
+    public Canvas Canvas;
     
     static private GameRootInstance _instance;
     static public GameRootInstance Instance

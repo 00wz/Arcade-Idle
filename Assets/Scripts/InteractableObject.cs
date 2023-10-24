@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour
+public abstract class InteractableObject : MonoBehaviour
 {
-    private StateMachine<InteractableObject, TestState> _stateMachine;
+    protected IStateMachine stateMachine;
 
-    private void Start()
+    protected virtual void OnTriggerStay(Collider other)
     {
-        _stateMachine = new StateMachine<InteractableObject, TestState>(this);
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.TryGetComponent<PlayerNavMashMove>(out _))
+        if(other.TryGetComponent<ICharacter>(out ICharacter character))
         {
-            _stateMachine._currentState.Interract();
+            stateMachine.currentState.Interract(character);
+            Debug.Log((stateMachine.currentState).GetType());
         }
+    }
+
+    protected virtual void OnDestroy()
+    {
+        stateMachine.Dispose();
     }
 }
