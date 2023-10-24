@@ -3,4 +3,5 @@ public enum Currency
 {
   Wood,
   Coins,
+  Stone,
 }

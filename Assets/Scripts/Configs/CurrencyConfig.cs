@@ -47,7 +47,7 @@ public class CurrencyConfig : ScriptableSingleton<CurrencyConfig>
     
     private void UpdateCurrencyEnum(string path)
     {
-        using (var fs = new FileStream(path, FileMode.Create))
+        using (var fs = new FileStream(path, FileMode.Open))
         using (var sw = new StreamWriter(fs))
         {
             sw.Write(HEADER_ENUM);
