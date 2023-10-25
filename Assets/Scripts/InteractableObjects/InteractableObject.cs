@@ -4,12 +4,15 @@ using UnityEngine;
 
 public abstract class InteractableObject : MonoBehaviour
 {
+    [SerializeField]
+    private string Name;
     protected IStateMachine stateMachine;
-    protected SceneMassage sceneMassage { get; private set; }
+    public SceneMassage sceneMassage { get; private set; }
 
     protected virtual void Awake()
     {
         sceneMassage = new SceneMassage(transform);
+        sceneMassage.SetHeadMassage(Name);
     }
 
     protected virtual void OnTriggerStay(Collider other)
@@ -17,7 +20,6 @@ public abstract class InteractableObject : MonoBehaviour
         if(other.TryGetComponent<ICharacter>(out ICharacter character))
         {
             stateMachine.currentState.Interract(character);
-            Debug.Log((stateMachine.currentState).GetType());
         }
     }
 

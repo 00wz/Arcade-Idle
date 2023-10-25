@@ -9,15 +9,16 @@ public class SceneMassage:IDisposable
     private SceneMassageView _view;
     private Transform _target;
     private float _heightOffsetPx;
-    private CompositeDisposable _disposables;
+    private CompositeDisposable _disposables=new CompositeDisposable();
     private Camera _camera;
+    private const string RESOURCE_PATH = "SceneMassageView";
 
     public SceneMassage(Transform target, float heightOffsetPx = 100f)
     {
         _target = target;
         _heightOffsetPx = heightOffsetPx;
         _camera = Camera.main;
-        _view= GameObject.Instantiate<SceneMassageView>(Resources.Load<SceneMassageView>("SceneMassageView"), 
+        _view= GameObject.Instantiate<SceneMassageView>(Resources.Load<SceneMassageView>(RESOURCE_PATH), 
             GameRootInstance.Instance.Canvas.transform);
         Observable.EveryUpdate().Subscribe(_ => ShowMassage()).AddTo(_disposables);
     }
