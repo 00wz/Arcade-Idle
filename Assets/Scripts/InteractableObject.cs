@@ -5,6 +5,12 @@ using UnityEngine;
 public abstract class InteractableObject : MonoBehaviour
 {
     protected IStateMachine stateMachine;
+    protected SceneMassage sceneMassage { get; private set; }
+
+    protected virtual void Awake()
+    {
+        sceneMassage = new SceneMassage(transform);
+    }
 
     protected virtual void OnTriggerStay(Collider other)
     {
@@ -18,5 +24,6 @@ public abstract class InteractableObject : MonoBehaviour
     protected virtual void OnDestroy()
     {
         stateMachine.Dispose();
+        sceneMassage.Dispose();
     }
 }

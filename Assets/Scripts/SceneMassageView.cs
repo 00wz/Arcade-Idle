@@ -10,7 +10,7 @@ public class SceneMassageView : MonoBehaviour
 
     [SerializeField]
     private TMP_Text Body;
-    /*
+    
     public void SetHeadMassage(string massage)
     {
         Head.text = massage;
@@ -20,5 +20,4 @@ public class SceneMassageView : MonoBehaviour
     {
         Body.text = massage;
     }
-    */
 }
