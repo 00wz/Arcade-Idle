@@ -9,6 +9,9 @@ public class GameRootInstance : MonoBehaviour
 
     [SerializeField]
     public Canvas Canvas;
+
+    [SerializeField]
+    public MainInventory MainInventory;
     
     static private GameRootInstance _instance;
     static public GameRootInstance Instance

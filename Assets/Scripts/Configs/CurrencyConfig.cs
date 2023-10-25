@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -8,16 +9,19 @@ using UnityEngine;
 public class CurrencyConfig : ScriptableSingleton<CurrencyConfig>
 {
     [Serializable]
-    public class CurrencyClass
+    public struct CurrencyClass
     {
         public string Name;
         public Sprite Icon;
         public GameObject Prefab;
     }
 
-    public List<CurrencyClass> CurrencyList = new List<CurrencyClass>();
+    [SerializeField]
+    private List<CurrencyClass> CurrencyList = new List<CurrencyClass>();
 
-    public CurrencyClass GetCurrencyClass(Currency currency)
+    public ReadOnlyCollection<CurrencyClass> currencyList => CurrencyList.AsReadOnly();
+
+    public CurrencyClass GetCurrencyStruct(Currency currency)
     {
         var name = nameof(currency);
         for(int i = 0; i < CurrencyList.Count; i++)
@@ -47,7 +51,7 @@ public class CurrencyConfig : ScriptableSingleton<CurrencyConfig>
     
     private void UpdateCurrencyEnum(string path)
     {
-        using (var fs = new FileStream(path, FileMode.Open))
+        using (var fs = new FileStream(path, FileMode.Truncate))
         using (var sw = new StreamWriter(fs))
         {
             sw.Write(HEADER_ENUM);

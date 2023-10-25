@@ -16,9 +16,6 @@ MonoBehaviour:
   - Name: Wood
     Icon: {fileID: 0}
     Prefab: {fileID: 0}
-  - Name: Coins
-    Icon: {fileID: 0}
-    Prefab: {fileID: 0}
   - Name: Stone
     Icon: {fileID: 0}
     Prefab: {fileID: 0}
