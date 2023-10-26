@@ -12,7 +12,7 @@ public class ReloadMine : BaseState<Mine>
     public override void Enter()
     {
         _remainingTime = context.ReloadTime;
-        context.sceneMassage.SetBodyMassage($"remaining: {_remainingTime.ToString("f1")}");
+        context.sceneMassage.SetBodyMessage($"remaining: {_remainingTime.ToString("f1")}");
         Observable.EveryUpdate().Subscribe(_ => TimerTick()).AddTo(_disposables);
     }
 
@@ -25,7 +25,7 @@ public class ReloadMine : BaseState<Mine>
             ChangeState<ReadyForMining>();
             return;
         }
-        context.sceneMassage.SetBodyMassage($"remaining: {_remainingTime.ToString("f1")}");
+        context.sceneMassage.SetBodyMessage($"remaining: {_remainingTime.ToString("f1")}");
     }
     public override void Exit()
     {

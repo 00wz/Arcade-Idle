@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class SceneMassageView : MonoBehaviour
+public class SceneMessageView : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text Head;
@@ -9,12 +9,12 @@ public class SceneMassageView : MonoBehaviour
     [SerializeField]
     private TMP_Text Body;
     
-    public void SetHeadMassage(string massage)
+    public void SetHeadMessage(string massage)
     {
         Head.text = massage;
     }
 
-    public void SetBodyMassage(string massage)
+    public void SetBodyMessage(string massage)
     {
         Body.text = massage;
     }

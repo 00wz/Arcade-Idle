@@ -9,7 +9,7 @@ public class SaleState : BaseState<Container>
     private StringBuilder stringBuilder = new();
     private bool _isWaits;
     private CompositeDisposable _disposables = new CompositeDisposable();
-    private const float TRADE_SPEED= 10f;
+    private const float TRADE_SPEED= 20f;
     private float _waitTime;
 
     public SaleState(Container context, Action<Type> changeStateCallback) : base(context, changeStateCallback)
@@ -88,7 +88,7 @@ public class SaleState : BaseState<Container>
         }
         stringBuilder.Append(priceList[last]);
 
-        context.sceneMassage.SetBodyMassage(stringBuilder.ToString());
+        context.sceneMassage.SetBodyMessage(stringBuilder.ToString());
     }
 
     public override void Exit()

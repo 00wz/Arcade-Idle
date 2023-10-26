@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8373602670716019243}
   - component: {fileID: 3976646153995392551}
   m_Layer: 0
-  m_Name: SceneMassageView
+  m_Name: SceneMessageView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

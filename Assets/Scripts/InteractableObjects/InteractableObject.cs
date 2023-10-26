@@ -6,14 +6,14 @@ public abstract class InteractableObject : MonoBehaviour
 {
     [SerializeField]
     protected string Name;
-    public SceneMassage sceneMassage { get; protected set; }
+    public SceneMessage sceneMassage { get; protected set; }
     protected IStateMachine stateMachine;
     protected CompositeDisposable _disposables = new();
 
     protected virtual void Awake()
     {
-        sceneMassage = new SceneMassage(transform);
-        sceneMassage.SetHeadMassage(Name);
+        sceneMassage = new SceneMessage(transform);
+        sceneMassage.SetHeadMessage(Name);
         this.OnTriggerStayAsObservable().Subscribe(collider =>TriggerStay(collider)).AddTo(_disposables);
     }
 

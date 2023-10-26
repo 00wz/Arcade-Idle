@@ -3,15 +3,15 @@ using UniRx;
 using UnityEngine;
 using UniRx.Triggers;
 
-public class SceneMassage:IDisposable
+public class SceneMessage:IDisposable
 {
-    private SceneMassageView _view;
+    private SceneMessageView _view;
     private Transform _target;
     private float _heightOffsetPx;
     private CompositeDisposable _targetSubscriptions=new CompositeDisposable();
     private CompositeDisposable _updateSubscriptions = new CompositeDisposable();
     private Camera _camera;
-    private const string RESOURCE_PATH = "SceneMassageView";
+    private const string RESOURCE_PATH = "SceneMessageView";
 
     private bool enabled
     {
@@ -19,7 +19,7 @@ public class SceneMassage:IDisposable
         {
             if (value)
             {
-                Observable.EveryUpdate().Subscribe(_ => ShowMassage()).AddTo(_updateSubscriptions);
+                Observable.EveryUpdate().Subscribe(_ => ShowMessage()).AddTo(_updateSubscriptions);
             }
             else
             {
@@ -30,29 +30,29 @@ public class SceneMassage:IDisposable
         }
     }
 
-    public SceneMassage(Transform target, float heightOffsetPx = 100f)
+    public SceneMessage(Transform target, float heightOffsetPx = 100f)
     {
         _target = target;
         _heightOffsetPx = heightOffsetPx;
         _camera = Camera.main;
-        _view= GameObject.Instantiate<SceneMassageView>(Resources.Load<SceneMassageView>(RESOURCE_PATH), 
+        _view= GameObject.Instantiate<SceneMessageView>(Resources.Load<SceneMessageView>(RESOURCE_PATH), 
             GameRootInstance.Instance.Canvas.transform);
         this.enabled = target.gameObject.activeInHierarchy;
         target.OnEnableAsObservable().Subscribe(_ => enabled=true).AddTo(_targetSubscriptions);
         target.OnDisableAsObservable().Subscribe(_ => enabled=false).AddTo(_targetSubscriptions);
     }
 
-    public void SetHeadMassage(string massage)
+    public void SetHeadMessage(string massage)
     {
-        _view.SetHeadMassage(massage);
+        _view.SetHeadMessage(massage);
     }
 
-    public void SetBodyMassage(string massage)
+    public void SetBodyMessage(string massage)
     {
-        _view.SetBodyMassage(massage);
+        _view.SetBodyMessage(massage);
     }
 
-    private void ShowMassage()
+    private void ShowMessage()
     {
         if (TryGetScreenPoint(_target, out Vector3 position))
         {

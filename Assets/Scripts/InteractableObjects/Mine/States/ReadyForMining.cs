@@ -14,7 +14,7 @@ public class ReadyForMining : BaseState<Mine>
     public override void Enter()
     {
         _currentReserve = context.MaximumCapacity;
-        context.sceneMassage.SetBodyMassage($"{context.MinedCurrency} left: {_currentReserve}");
+        context.sceneMassage.SetBodyMessage($"{context.MinedCurrency} left: {_currentReserve}");
         _isWaits = false;
     }
 
@@ -46,7 +46,7 @@ public class ReadyForMining : BaseState<Mine>
     private void GiveResource(ICharacter character)
     {
         _currentReserve--;
-        context.sceneMassage.SetBodyMassage($"{context.MinedCurrency} left: {_currentReserve}");
+        context.sceneMassage.SetBodyMessage($"{context.MinedCurrency} left: {_currentReserve}");
         character.inventary[context.MinedCurrency]++;
     }
 

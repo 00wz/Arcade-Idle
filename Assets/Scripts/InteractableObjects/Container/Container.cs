@@ -30,8 +30,8 @@ public class Container : InteractableObject,ISaveble
 
     protected override void Awake()
     {
-        sceneMassage = new SceneMassage(Trigger.transform);
-        sceneMassage.SetHeadMassage(Name);
+        sceneMassage = new SceneMessage(Trigger.transform);
+        sceneMassage.SetHeadMessage(Name);
         stateMachine = new StateMachine<Container, SaleState>(this);
         Trigger.OnTriggerStayAsObservable().Subscribe(collider =>TriggerStay(collider)).AddTo(_disposables);
     }
