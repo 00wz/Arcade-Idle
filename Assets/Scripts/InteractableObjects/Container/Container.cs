@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Collections;
 
-public class Container : InteractableObject
+public class Container : InteractableObject,ISaveble
 {
     [SerializeField]
     private GameObject Trigger;
@@ -42,5 +43,17 @@ public class Container : InteractableObject
     {
         Trigger.SetActive(false);
         Content.SetActive(true);
+    }
+
+    public ArrayList Save()
+    {
+        ArrayList SaveParam = new();
+        SaveParam.Add(stateMachine.currentState.GetType());
+        return SaveParam;
+    }
+
+    public void Load(ArrayList data)
+    {
+        stateMachine.ChangeState((Type)data[0]);
     }
 }
