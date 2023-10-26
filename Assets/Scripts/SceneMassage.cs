@@ -1,30 +1,31 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UniRx.Triggers;
 
 public class SceneMassage:IDisposable
 {
     private SceneMassageView _view;
     private Transform _target;
     private float _heightOffsetPx;
-    private CompositeDisposable _disposables=new CompositeDisposable();
+    private CompositeDisposable _targetSubscriptions=new CompositeDisposable();
+    private CompositeDisposable _updateSubscriptions = new CompositeDisposable();
     private Camera _camera;
     private const string RESOURCE_PATH = "SceneMassageView";
 
-    public bool enabled
+    private bool enabled
     {
         set
         {
             if (value)
             {
-                Observable.EveryUpdate().Subscribe(_ => ShowMassage()).AddTo(_disposables);
+                Observable.EveryUpdate().Subscribe(_ => ShowMassage()).AddTo(_updateSubscriptions);
             }
             else
             {
-                _disposables.Clear();
-                _view.gameObject.SetActive(false);
+                _updateSubscriptions.Clear();
+                if(_view)
+                    _view.gameObject.SetActive(false);
             }
         }
     }
@@ -36,7 +37,9 @@ public class SceneMassage:IDisposable
         _camera = Camera.main;
         _view= GameObject.Instantiate<SceneMassageView>(Resources.Load<SceneMassageView>(RESOURCE_PATH), 
             GameRootInstance.Instance.Canvas.transform);
-        this.enabled = true;
+        this.enabled = target.gameObject.activeInHierarchy;
+        target.OnEnableAsObservable().Subscribe(_ => enabled=true).AddTo(_targetSubscriptions);
+        target.OnDisableAsObservable().Subscribe(_ => enabled=false).AddTo(_targetSubscriptions);
     }
 
     public void SetHeadMassage(string massage)
@@ -51,7 +54,7 @@ public class SceneMassage:IDisposable
 
     private void ShowMassage()
     {
-        if(_target.gameObject.activeInHierarchy&& TryGetScreenPoint(_target,out Vector3 position))
+        if (TryGetScreenPoint(_target, out Vector3 position))
         {
             if (!_view.gameObject.activeSelf)
             {
@@ -81,6 +84,7 @@ public class SceneMassage:IDisposable
     public void Dispose()
     {
         GameObject.Destroy(_view);
-        _disposables.Clear();
+        _updateSubscriptions.Clear();
+        _targetSubscriptions.Clear();
     }
 }
