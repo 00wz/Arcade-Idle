@@ -38,7 +38,7 @@ public class SaleState : BaseState<Container>
             {
                 character.inventary[priceList[i].Currency]--;
                 modified = true;
-                if(priceList[i].Price-1<0)
+                if(priceList[i].Price-1<=0)
                 {
                     priceList.RemoveAt(i);
                     continue;

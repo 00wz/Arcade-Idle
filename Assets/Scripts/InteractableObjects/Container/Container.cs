@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Collections;
+using UniRx.Triggers;
+using UniRx;
 
 public class Container : InteractableObject,ISaveble
 {
@@ -31,6 +33,7 @@ public class Container : InteractableObject,ISaveble
         sceneMassage = new SceneMassage(Trigger.transform);
         sceneMassage.SetHeadMassage(Name);
         stateMachine = new StateMachine<Container, SaleState>(this);
+        Trigger.OnTriggerStayAsObservable().Subscribe(collider =>TriggerStay(collider)).AddTo(_disposables);
     }
 
     public void HideContent()
