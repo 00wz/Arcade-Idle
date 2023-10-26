@@ -5,9 +5,9 @@ using UnityEngine;
 public abstract class InteractableObject : MonoBehaviour
 {
     [SerializeField]
-    private string Name;
+    protected string Name;
     protected IStateMachine stateMachine;
-    public SceneMassage sceneMassage { get; private set; }
+    public SceneMassage sceneMassage { get; protected set; }
 
     protected virtual void Awake()
     {

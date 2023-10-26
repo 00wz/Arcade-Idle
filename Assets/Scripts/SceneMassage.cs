@@ -13,6 +13,22 @@ public class SceneMassage:IDisposable
     private Camera _camera;
     private const string RESOURCE_PATH = "SceneMassageView";
 
+    public bool enabled
+    {
+        set
+        {
+            if (value)
+            {
+                Observable.EveryUpdate().Subscribe(_ => ShowMassage()).AddTo(_disposables);
+            }
+            else
+            {
+                _disposables.Clear();
+                _view.gameObject.SetActive(false);
+            }
+        }
+    }
+
     public SceneMassage(Transform target, float heightOffsetPx = 100f)
     {
         _target = target;
@@ -20,7 +36,7 @@ public class SceneMassage:IDisposable
         _camera = Camera.main;
         _view= GameObject.Instantiate<SceneMassageView>(Resources.Load<SceneMassageView>(RESOURCE_PATH), 
             GameRootInstance.Instance.Canvas.transform);
-        Observable.EveryUpdate().Subscribe(_ => ShowMassage()).AddTo(_disposables);
+        this.enabled = true;
     }
 
     public void SetHeadMassage(string massage)
@@ -35,7 +51,7 @@ public class SceneMassage:IDisposable
 
     private void ShowMassage()
     {
-        if(TryGetScreenPoint(_target,out Vector3 position))
+        if(_target.gameObject.activeInHierarchy&& TryGetScreenPoint(_target,out Vector3 position))
         {
             if (!_view.gameObject.activeSelf)
             {
