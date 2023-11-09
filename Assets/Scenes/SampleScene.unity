@@ -155,6 +155,10 @@ PrefabInstance:
       propertyPath: MaximumCapacity
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8312197496559127987, guid: 19c412207612c0f44b4c3b991f65b097, type: 3}
+      propertyPath: InterractableSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8312197496559127990, guid: 19c412207612c0f44b4c3b991f65b097, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -201,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8312197496559127991, guid: 19c412207612c0f44b4c3b991f65b097, type: 3}
       propertyPath: m_Name
-      value: Mine
+      value: StoneMine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19c412207612c0f44b4c3b991f65b097, type: 3}
@@ -1257,6 +1261,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1933967261}
     m_Modifications:
+    - target: {fileID: 8312197496559127987, guid: 19c412207612c0f44b4c3b991f65b097, type: 3}
+      propertyPath: InterractableSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8312197496559127990, guid: 19c412207612c0f44b4c3b991f65b097, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1370,6 +1378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: New Location
+  InterractableSpeed: 20
   Trigger: {fileID: 652434894}
   Content: {fileID: 8473538792401158178}
   PriceList:
@@ -1483,7 +1492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7106588095967885671, guid: 1f31b993a77c5724eb43060309d35ce9, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7106588095967885671, guid: 1f31b993a77c5724eb43060309d35ce9, type: 3}
       propertyPath: m_LocalPosition.x

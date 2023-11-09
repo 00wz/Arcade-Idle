@@ -6,7 +6,10 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class CurrencyConfig : ScriptableSingleton<CurrencyConfig>
+public class CurrencyConfig
+#if UNITY_EDITOR
+    : ScriptableSingleton<CurrencyConfig>
+#endif
 {
     [Serializable]
     public struct CurrencyClass
