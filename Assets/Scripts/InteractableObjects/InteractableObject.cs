@@ -1,8 +1,9 @@
 using UnityEngine;
 using UniRx.Triggers;
 using UniRx;
+using System.Collections;
 
-public abstract class InteractableObject : MonoBehaviour,IInterractable
+public abstract class InteractableObject : MonoBehaviour,IInterractable, ISaveble
 {
     [SerializeField]
     protected string Name;
@@ -23,12 +24,22 @@ public abstract class InteractableObject : MonoBehaviour,IInterractable
 
     public void Interract(ICharacter character)
     {
-        stateMachine.currentState.Interract(character);
+        stateMachine.Interract(character);
     }
 
     protected virtual void OnDestroy()
     {
         stateMachine.Dispose();
         sceneMassage.Dispose();
+    }
+
+    public ArrayList Save()
+    {
+        return stateMachine.Save();
+    }
+
+    public void Load(ArrayList data)
+    {
+        stateMachine.Load(data);
     }
 }

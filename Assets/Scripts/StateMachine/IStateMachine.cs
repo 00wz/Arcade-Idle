@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public interface IStateMachine : IDisposable
 {
-    public IState currentState { get; }
-
-    public void ChangeState(Type stateType);
+    public void Interract(ICharacter character);
+    public ArrayList Save();
+    public void Load(ArrayList data);
 }

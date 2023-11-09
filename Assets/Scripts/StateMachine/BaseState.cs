@@ -1,7 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
-public abstract class BaseState<ContextType>:IState
+public abstract class BaseState<ContextType>
 {
     protected ContextType context;
     private Action<Type> _changeState;
@@ -27,5 +28,14 @@ public abstract class BaseState<ContextType>:IState
     protected void ChangeState<NewState>()where NewState: BaseState<ContextType>
     {
         _changeState.Invoke(typeof(NewState));
+    }
+
+    public virtual void Load(ArrayList saveParam)
+    {
+    }
+
+    public virtual ArrayList Save()
+    {
+        return null;
     }
 }

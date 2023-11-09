@@ -20,7 +20,7 @@ public class Saver
 
     public void UpdateSaveList()
     {
-        var savelist = UnityEngine.Object.FindObjectsOfType<MonoBehaviour>().OfType<ISaveble>().ToArray();
+        var savelist = UnityEngine.Object.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveble>().ToArray();
 
         foreach (var saveble in savelist)
         {
