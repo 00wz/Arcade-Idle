@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: New Location
+  InterractableSpeed: 20
   Trigger: {fileID: 1659473777059948723}
   Content: {fileID: 8473538793696959709}
   PriceList:

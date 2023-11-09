@@ -6,7 +6,13 @@ public abstract class InteractableObject : MonoBehaviour,IInterractable
 {
     [SerializeField]
     protected string Name;
+    [SerializeField]
+    private float InterractableSpeed;
+
+    float IInterractable.InterractableSpeed => InterractableSpeed;
     public SceneMessage sceneMassage { get; protected set; }
+
+
     protected IStateMachine stateMachine;
 
     protected virtual void Awake()

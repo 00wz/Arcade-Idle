@@ -11,9 +11,6 @@ public class Mine : InteractableObject
     public int MaximumCapacity;
 
     [SerializeField]
-    public float MiningSpeed;
-
-    [SerializeField]
     public float ReloadTime;
 
     protected override void Awake()
