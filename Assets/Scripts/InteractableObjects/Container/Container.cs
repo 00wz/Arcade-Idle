@@ -33,7 +33,7 @@ public class Container : InteractableObject,ISaveble
         sceneMassage = new SceneMessage(Trigger.transform);
         sceneMassage.SetHeadMessage(Name);
         stateMachine = new StateMachine<Container, SaleState>(this);
-        Trigger.OnTriggerStayAsObservable().Subscribe(collider =>TriggerStay(collider)).AddTo(_disposables);
+        //Trigger.OnTriggerStayAsObservable().Subscribe(collider =>TriggerStay(collider)).AddTo(_disposables);
     }
 
     public void HideContent()

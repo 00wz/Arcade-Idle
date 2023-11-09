@@ -19,4 +19,12 @@ public class PlayerCharacter : MonoBehaviour, ICharacter,ISaveble
         saveParam.Add(transform.position.z);
         return saveParam;
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent<IInterractable>(out IInterractable interractable))
+        {
+            interractable.Interract(this);
+        }
+    }
 }
